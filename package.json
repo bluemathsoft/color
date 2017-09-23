@@ -1,0 +1,20 @@
+{
+  "name": "@bluemath/color",
+  "version": "0.1.0",
+  "description": "Color utilities",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Color"
+  ],
+  "author": "Jayesh Salvi",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.2.3",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.5.2",
+    "webpack": "^3.6.0"
+  }
+}
