@@ -48,6 +48,10 @@ export declare class Color {
      */
     toCSSHex(bytes?: number): string;
     /**
+    * Return a single number that encode R-G-B values of the color
+    */
+    toNumber(): number;
+    /**
      * Get Alpha
      * @returns {Number}
      */

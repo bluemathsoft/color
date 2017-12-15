@@ -156,6 +156,19 @@ export class Color {
   }
 
   /**
+  * Return a single number that encode R-G-B values of the color
+  */
+  toNumber() : number {
+    if(!this.rgb) {
+      this.rgb = hsv2rgb(this.hsv!);
+    }
+    let red = Math.round(this.rgb[0]*255);
+    let green = Math.round(this.rgb[1]*255);
+    let blue = Math.round(this.rgb[2]*255);
+    return (red << 16) | (green << 8) | blue;
+  }
+
+  /**
    * Get Alpha
    * @returns {Number}
    */
