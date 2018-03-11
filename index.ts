@@ -16,9 +16,9 @@ export interface HSVA {
 
 export class Color {
 
-  rgb : number[]|null;
-  a : number;
-  hsv : number[]|null;
+  rgb : number[]|null = null;
+  a : number = 1;
+  hsv : number[]|null = null;
 
   /**
    * @example
@@ -153,6 +153,36 @@ export class Color {
       pad(Math.round(blue*max).toString(16).toUpperCase(), bytes)
     ];
     return css.join('');
+  }
+
+  /**
+   * Create color object from CSS Hex string
+   * @param s Hex string of the form '#ff0' or '#f0f0cc'
+   */
+  static fromCSSHex(s:string) {
+    if (s.length===4) { // e.g. #ff0
+      let match=/#(\w)(\w)(\w)/.exec(s);
+      if (match) {
+        let r=parseInt(match[1],16);
+        let g=parseInt(match[2],16);
+        let b=parseInt(match[3],16);
+        return new Color([r/16,g/16,b/16,1]);
+      } else {
+        throw new Error('Invalid input format');
+      }
+    } else if (s.length===7) { // e.g. #f0f0cc
+      let match=/#(\w\w)(\w\w)(\w\w)/.exec(s);
+      if (match) {
+        let r=parseInt(match[1],16);
+        let g=parseInt(match[2],16);
+        let b=parseInt(match[3],16);
+        return new Color([r/255,g/255,b/255,1]);
+      } else {
+        throw new Error('Invalid input format');
+      }
+    } else {
+      throw new Error('Invalid input format');
+    }
   }
 
   /**
@@ -350,7 +380,7 @@ export class Color {
    * @returns {Kolor}
    */
   clone() {
-    return Color.fromMemento(this.toMemento());
+    return Color.fromJSON(this.toJSON());
   }
 
 
@@ -371,7 +401,7 @@ export class Color {
    * @param {!Object} m
    * @returns {Kolor}
    */
-  static fromMemento(m:number[]):Color {
+  static fromJSON(m:number[]):Color {
     return new Color(m);
   }
 
@@ -379,7 +409,7 @@ export class Color {
    * Generate Memento
    * @returns {Object} Memento
    */
-  toMemento() : number[]{
+  toJSON() : number[]{
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv!);
     }

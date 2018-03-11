@@ -48,6 +48,11 @@ export declare class Color {
      */
     toCSSHex(bytes?: number): string;
     /**
+     * Create color object from CSS Hex string
+     * @param s Hex string of the form '#ff0' or '#f0f0cc'
+     */
+    static fromCSSHex(s: string): Color;
+    /**
     * Return a single number that encode R-G-B values of the color
     */
     toNumber(): number;
@@ -141,12 +146,12 @@ export declare class Color {
      * @param {!Object} m
      * @returns {Kolor}
      */
-    static fromMemento(m: number[]): Color;
+    static fromJSON(m: number[]): Color;
     /**
      * Generate Memento
      * @returns {Object} Memento
      */
-    toMemento(): number[];
+    toJSON(): number[];
     /**
      * Generate random color
      * @returns {Kolor}
