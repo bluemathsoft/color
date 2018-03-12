@@ -28,6 +28,7 @@ export class Color {
    * new Kolor([r,g,b,a]); // each of r,g,b,a should be in 0.0 to 1.0, otherwise undefined behavior
    * new Kolor({r,g,b,a}); // each of r,g,b,a should be in 0.0 to 1.0, otherwise undefined behavior
    * new Kolor({h,s,v,a}); // each of h,s,v,a should be in 0.0 to 1.0, otherwise undefined behavior
+   * new Kolor(0xff0f00);
    */
   constructor(
     arg0:number|RGBA|HSVA|number[],
@@ -76,6 +77,14 @@ export class Color {
           } else {
             this.a = c.a;
           }
+        } else if(typeof c === 'number') {
+          let b = (c & 0xff)/255;
+          let g = ((c & (0xff << 8)) >> 8)/255;
+          let r = ((c & (0xff << 16)) >> 16)/255;
+          this.rgb = [r,g,b];
+          this.a = 1;
+        } else {
+          throw new Error('Invalid construction arguments');
         }
       }
     }

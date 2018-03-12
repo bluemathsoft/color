@@ -22,6 +22,7 @@ export declare class Color {
      * new Kolor([r,g,b,a]); // each of r,g,b,a should be in 0.0 to 1.0, otherwise undefined behavior
      * new Kolor({r,g,b,a}); // each of r,g,b,a should be in 0.0 to 1.0, otherwise undefined behavior
      * new Kolor({h,s,v,a}); // each of h,s,v,a should be in 0.0 to 1.0, otherwise undefined behavior
+     * new Kolor(0xff0f00);
      */
     constructor(arg0: number | RGBA | HSVA | number[], arg1?: number, arg2?: number, arg3?: number);
     /**
